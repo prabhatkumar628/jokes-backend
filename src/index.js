@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv"
 import fs from "fs"
+import cors from "cors"
 dotenv.config({
     path: "./env"
 })
@@ -19,6 +20,11 @@ readData()
 const port = process.env.PORT || 3000
 
 const app = express()
+
+app.use(cors({
+    origin: "https://jokesfrontend.netlify.app/",
+    Credential: true
+}))
 
 app.get("/", (req, res) => {
     res.send("<h1>Server is Running with api data</h1>")
